@@ -40,6 +40,12 @@ app.use('/api',getPostsByUploadedBy);
 const getPosts=require('./routes/post.routes')
 app.use('/api',getPosts); 
 
+const student=require('./routes/student.route');
+app.use('/api',student);
+
+const subject=require('./routes/subject.route');
+app.use('/api',subject);
+
 app.use('/', (req, res) => {
   res.status(200).json({
       message: "Test server working"

@@ -12,8 +12,8 @@ const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
         idle: config.pool.idle,
     },
 });
-const db={};
-db.sequelize=sequelize;
+const db = {};
+db.sequelize = sequelize;
 
 db.user=require('../models/user.model')(sequelize,Sequelize);
 
@@ -25,6 +25,19 @@ db.post.belongsTo(db.user,{
         allowNull:false,
         onDelete:'CASCADE'
     }
-})
+});
+
+db.students = require('../models/students.model')(sequelize, Sequelize);
+db.subjects = require('../models/subject.model')(sequelize, Sequelize);
+
+db.students.belongsToMany(db.subjects, {
+    through: "student_subjects",
+    foreignKey: "subject_id"
+});
+
+db.subjects.belongsToMany(db.students, {
+    through: "student_subjects",
+    foreignKey: "student_id"
+});
 
 module.exports = db

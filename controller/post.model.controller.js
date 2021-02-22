@@ -69,7 +69,7 @@ exports.filterPostByType = async (req, res) => {
                 where: {
                     type: searchType
                 },
-                attributes: ['id', 'postTitle', 'content', 'image', 'type'],
+                attributes: ['id', 'postTitle', 'content', 'image'],
             })
             if (!result) {
                 return response.responseHelper(res, false, "No posts found in that catagory", "No posts found in that search catagory");
