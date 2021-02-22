@@ -110,7 +110,7 @@ exports.Login = async (req, res) => {
 
 }
 
-exports.UpdateProfile = async (req, res)=>{
+exports.UpdateProfile = async (req, res) => {
     const user_id = req.body.id;
 
     const firstname = req.body.firstname;
@@ -129,7 +129,7 @@ exports.UpdateProfile = async (req, res)=>{
             if (!result) {
                 return response.responseHelper(res, false, "Failed", "User not found");
             }
-             result = await result.update({
+            result = await result.update({
                 firstname,
                 lastname
             })
@@ -147,17 +147,18 @@ exports.UpdateProfile = async (req, res)=>{
         return response.responseHelper(res, false, "No Data Given", "Error");
     }
 }
+
 exports.GetUsers = async (req, res) => {
-   try {
-    let result =await User.findAll(
-        console.log("All users:", JSON.stringify())
-    )
-    if(result){
-        return response.responseHelper(res, true, result, "All records fetched successfully");
+    try {
+        let result = await User.findAll(
+            console.log("All users:", JSON.stringify())
+        )
+        if (result) {
+            return response.responseHelper(res, true, result, "All records fetched successfully");
+        }
+    } catch (error) {
+        return response.responseHelper(res, true, "Something went wrong", "Error Can't Fetch users");
     }
-   } catch (error) {
-    return response.responseHelper(res, true,"Something went wrong", "Error Can't Fetch users");  
-   }
 
 }
 

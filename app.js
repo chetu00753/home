@@ -25,8 +25,20 @@ const dummy = require('./routes/dummy_data')
  const CreatePost=require('./routes/post.routes')
  app.use('/api',CreatePost); 
 
+ const updatePost=require('./routes/post.routes')
+ app.use('/api',updatePost);
+
  const getUsers=require('./routes/user_routes')
   app.use('/api',getUsers);
+
+const getPostsByType=require('./routes/post.routes');
+app.use('/api',getPostsByType);
+
+const getPostsByUploadedBy=require('./routes/post.routes');
+app.use('/api',getPostsByUploadedBy);
+
+const getPosts=require('./routes/post.routes')
+app.use('/api',getPosts); 
 
 app.use('/', (req, res) => {
   res.status(200).json({
